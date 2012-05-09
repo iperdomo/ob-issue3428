@@ -2,7 +2,7 @@
 
 # Mercurial pretxncommit hook
 echo "Performing jslint check on modified js resources"
-for i in $(hg log -r $HG_NODE --template '{files}')
+for i in $(hg --traceback log -r $HG_NODE --template '{files}')
 do
   if [ -f "$i" -a -n "$(echo $i | awk '/.js$/ && ! /^web/')" ]; then
     ./scripts/dummy $i || exit 1
